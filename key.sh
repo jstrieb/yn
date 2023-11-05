@@ -1,5 +1,7 @@
 #!/bin/bash
 
+VOTERS=3
+
 main() {
   VOTE="${1}"
   if [ "${VOTE}" = "space" ]; then
@@ -9,10 +11,9 @@ main() {
   fi
 
   echo "${VOTE}" >> keys.txt
-  if [ "$(wc -l keys.txt | cut -d ' ' -f 1)" -ge 3 ]; then
+  if [ "$(wc -l keys.txt | cut -d ' ' -f 1)" -ge "${VOTERS}" ]; then
     KEY="$(
-      cat keys.txt \
-        | sort \
+      sort keys.txt \
         | uniq -c \
         | sort -n \
         | tail -n 1 \
