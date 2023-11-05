@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Y/N</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      height: 100%;
+      display: block;
+      min-height: 100dvh;
+      margin: 0;
+      padding: 1em;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: stretch;
+      gap: 1em;
+    }
+
+    button {
+      flex-grow: 3;
+      font-size: xx-large;
+      background: white;
+      color: black;
+      border: 3px solid var(--color, black);
+      border-radius: 0;
+      box-shadow: 7px 7px 0 0 var(--color, black);
+    }
+
+    button:hover {
+      box-shadow: 5px 5px 0 0 var(--color, black);
+    }
+
+    button:active {
+      box-shadow: 3px 3px 0 0 var(--color, black);
+    }
+
+    button.yes {
+      --color: green;
+    }
+
+    button.no {
+      --color: red;
+    }
+
+    button.space {
+      flex-grow: 1;
+    }
+  </style>
+  <script>
+    function vote(key) {
+      fetch(`/key.sh?${key}`)
+    }
+  </script>
+</head>
+<body>
+  <button onclick="vote('y')" class="yes">Yes</button>
+  <button onclick="vote('n')" class="no">No</button>
+  <button onclick="vote('space')" class="space">Space</button>
+</body>
+</html>
